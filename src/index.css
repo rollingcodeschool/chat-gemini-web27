@@ -1,0 +1,20 @@
+body{
+  background-color: #1D2D44;
+   color:#EAF2F8
+}
+
+.card{
+  background-color: #3E5C76;
+ 
+}
+
+.input{
+  background-color: #8AA9C4;
+
+}
+
+input{
+    &:focus{
+    color: #8AA9C4 !important; ;
+  }
+}
