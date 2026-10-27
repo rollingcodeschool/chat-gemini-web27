@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { GoogleGenAI } from "@google/genai";
+import FormChatApp from "./FormChatApp";
 
 const ChatApp = () => {
   const [inputText, setInputText] = useState("");
   const [initialMessage, setinitialMessage] = useState(null);
   // const [messages, setMessages] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const model = "gemini-3.5-flash-lite";
 
   const ai = new GoogleGenAI({
-    apiKey: "AIzaSyAIopD3zEYGeU0UotBMRLHQMIgGEo1ujFQ",
+    apiKey: import.meta.env.VITE_API_GEMINI, //Variable de entorno
   });
 
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
 
+    //función de saludo inicial
     const obtenerSaludoInicial = async () => {
       setLoading(true);
       try {
@@ -23,9 +26,9 @@ const ChatApp = () => {
           {
             model,
             input:
-              "Saluda al usuario de forma breve y dale la bienvenida a este asistente. acompañar el mensaje con un emoji",
+              "Saluda al usuario de forma breve y dale la bienvenida a este asistente. Usá un tono argentino y acompaña el mensaje con un emoji.",
           },
-          { abortSignal:signal },
+          { abortSignal: signal },
         );
 
         setinitialMessage([
@@ -38,17 +41,13 @@ const ChatApp = () => {
       }
     };
 
-     obtenerSaludoInicial();
-    
+    //Ejecutamos la función
+    obtenerSaludoInicial();
+
     return () => {
-        controller.abort();
+      controller.abort();
     };
-
-   
   }, []);
-
- 
-  
 
   const chatBot = async (e) => {
     e.preventDefault();
@@ -81,26 +80,12 @@ const ChatApp = () => {
       </div>
       <div className="row justify-content-center mt-4">
         <div className="col col-md-6 card p-5">
-          <form onSubmit={chatBot}>
-            <input
-              type="text"
-              className="form-control input"
-              placeholder="Escribe tu consulta..."
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              disabled={loading}
-              onFocus={() => setInputText("")}
-            />
-
-            <textarea
-              readOnly
-              className="form-control input mt-3"
-              placeholder={loading ? "Pensando...":""}
-              name=""
-              id=""
-              rows={10}
-            ></textarea>
-          </form>
+          <FormChatApp
+            chatBot={chatBot}
+            inputText={inputText}
+            loading={loading}
+            setInputText={setInputText}
+          />
         </div>
       </div>
     </div>

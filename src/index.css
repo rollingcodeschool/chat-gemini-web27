@@ -1,20 +1,19 @@
-body{
-  background-color: #1D2D44;
-   color:#EAF2F8
+body {
+  background-color: #1d2d44;
+  color: #eaf2f8;
 }
 
-.card{
-  background-color: #3E5C76;
- 
+.card {
+  background-color: #3e5c76;
 }
 
-.input{
-  background-color: #8AA9C4;
-
+.input {
+  background-color: #8aa9c4;
 }
 
-input{
-    &:focus{
-    color: #8AA9C4 !important; ;
+input {
+  color: black;
+  &:focus {
+    color: #8aa9c4 !important;
   }
 }
