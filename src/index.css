@@ -11,6 +11,30 @@ body {
   background-color: #8aa9c4;
 }
 
+.markdown-output {
+  min-height: 250px;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: #8aa9c4;
+  color: #000;
+}
+
+.markdown-output > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-output pre {
+  padding: 0.75rem;
+  overflow-x: auto;
+  border-radius: 0.375rem;
+  background-color: #1d2d44;
+  color: #eaf2f8;
+}
+
+.markdown-output code {
+  overflow-wrap: anywhere;
+}
+
 input {
   color: black;
   &:focus {

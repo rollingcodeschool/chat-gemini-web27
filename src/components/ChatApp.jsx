@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GoogleGenAI } from "@google/genai";
 import FormChatApp from "./FormChatApp";
 
 const ChatApp = () => {
   const [inputText, setInputText] = useState("");
   const [initialMessage, setinitialMessage] = useState(null);
-  // const [messages, setMessages] = useState(null);
+  const [responseText, setResponseText] = useState("");
   const [loading, setLoading] = useState(false);
 
   const model = "gemini-3.5-flash-lite";
@@ -51,17 +51,16 @@ const ChatApp = () => {
 
   const chatBot = async (e) => {
     e.preventDefault();
-    e.target[1].value = "";
+    setResponseText("");
     setLoading(true);
     try {
       const interaction = await ai.interactions.create({
         model,
         input: inputText,
       });
-      e.target[1].value = interaction.output_text;
-      // setMessages({sender: "gemini", text: interaction.output_text});
+      setResponseText(interaction.output_text);
     } catch (error) {
-      console.log(error);
+      console.error("Error al generar respuesta:", error);
     } finally {
       setLoading(false);
     }
@@ -84,6 +83,7 @@ const ChatApp = () => {
             chatBot={chatBot}
             inputText={inputText}
             loading={loading}
+            responseText={responseText}
             setInputText={setInputText}
           />
         </div>
