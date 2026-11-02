@@ -5,7 +5,7 @@ const ChatApp = () => {
 
   const model = "gemini-3.5-flash-lite";
   const ai = new GoogleGenAI({
-    apiKey: "AIzaSyAIopD3zEYGeU0UotBMRLHQMIgGEo1ujFQ",
+    apiKey: "",
   });
 
   useEffect(() => {
