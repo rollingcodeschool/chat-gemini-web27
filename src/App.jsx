@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-
+import ChatApp from "./components/ChatApp";
 
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         </div>
       </div>
     {/* mostrar componente chat  */}
-     
+      {show && <ChatApp />}
     </div>
   );
 };
